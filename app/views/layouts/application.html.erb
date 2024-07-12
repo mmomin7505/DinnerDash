@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DinnerDash</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+</head>
+<body>
+  <% if current_user&.admin? %>
+    <%= render "shared/adminNav" %>
+  <% else %>
+    <%= render "shared/navbar" %>
+  <% end %>
+    <%= yield %>
+</body>
+</html>
+

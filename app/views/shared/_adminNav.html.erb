@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <a class="navbar-brand" href="#"><%= image_tag "logo.png" , class:"logo-image"%></a>
+      </nav>
+      
+    <div class= "A">
+      <div class="container">
+         <ul class="navbar-nav">
+            <li class="nav-item"><%= link_to 'Dashboard',root_path, class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to 'Manage Items', admin_items_path, class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to 'Manage Categories',admin_categories_path, class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to 'Manage Orders',admin_orders_path, class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete , class:"nav-link"%></li>
+        </ul>  
+    </div>
+  </div>
+    </header>
+  </body>
+</html>
+
+
+
+
+
+
+ 
+

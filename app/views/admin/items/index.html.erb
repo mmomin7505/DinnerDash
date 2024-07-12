@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+ <%= stylesheet_link_tag 'items', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<div class="Box-container">
+    <div class="row">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="n">Title</th>
+                    <th class="n">Description</th>
+                    <th class="n">Quantity</th>
+                    <th class="n">Price</th>
+                    <th class="b"><%= link_to "Add Item", new_admin_item_path%></th> 
+                </tr>
+            </thead>
+            <% @items.each do |item| %>
+             <tbody>
+                <tr>
+                    <td><%= item.title %></td>
+                    <td><%= item.description %></td>
+                    <td><%= item.quantity %></td>
+                    <td><%= item.price %></td>
+                    <td> 
+                     <%= button_to 'Hide',"",  method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+                     <%= link_to "Modify", edit_admin_item_path(item), class:"btn btn-dark"%>
+                    </td>
+                </tr>
+             </tbody>
+            <% end %>
+        </table>
+    </div>
+</div>                    
+</body>
+</html>

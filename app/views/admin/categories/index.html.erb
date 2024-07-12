@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+ <%= stylesheet_link_tag 'items', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<div class="Box-container">
+    <table class="table table-bordered c">
+        <thead class="thead-dark">
+            <tr>
+                <th class="n">Name</th>
+                <th class="b"><%= link_to "Add Categories", new_admin_category_path%></th> 
+            </tr>
+        </thead>
+        <% @categories.each do |category| %>
+        <tbody>
+            <tr>
+                <td><%= category.name %></td>
+                <td> 
+                <%= link_to "Modify", edit_admin_category_path(category), class:"btn btn-dark"%>
+                <%= button_to 'Remove', admin_category_path(category), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+                </td>
+            </tr>
+        </tbody>
+        <% end %>
+    </table>
+</div>                    
+</body>
+</html>
+
+
+
+
+  
+
+ 

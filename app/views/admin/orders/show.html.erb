@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+ <%= stylesheet_link_tag 'items', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<div class="Box-container">
+    <div class="row">
+        <table class="table table-bordered"> 
+            <%= link_to "",admin_orders_path, class:"A bi bi-arrow-left" %>
+            <thead class="thead-dark">
+                <tr>
+                    <th class="n">Item</th>
+                    <th class="n">Quantity</th>
+                    <th class="n">Amount</th>
+                    <th class="n">Purchaser Name</th>
+                    <th class="n">Purchaser Email</th>
+                </tr>
+            </thead>
+            <% total_price = 0 %>
+            <% @order_items.each do |order| %>
+             <tbody>
+                <tr>
+                    <td><%=image_tag "Food.jpeg", class:"i"%>  <B><%= order.item.title %></B></td>
+                    <td><%= order.quantity %></td>
+                    <td><%= order.amount%></td>
+                    <td><%= @user.full_name %></td>
+                    <td><%= @user.email %></td>
+                    <% total_price += order.quantity * order.item.price %>
+                </tr>
+                <% end %>
+                <tr>
+                    <td colspan="3">
+                            <div class="order-details">
+                                <b>Total Price:</b> $<%= total_price %><br>
+                                <b>Status:</b> <%= @order.status %><br>
+                            </div>
+                        </td>
+                </tr>
+             </tbody>
+        </table>
+    </div>
+</div>                    
+</body>
+</html>

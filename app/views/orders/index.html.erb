@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%= stylesheet_link_tag 'orders', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+    <div class="Box-container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Items</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead><br>
+                <tbody>
+                <% @orders.each do |order| %>
+                    <% total_price = 0 %>
+                    <% order_time = '' %>
+                    <% o_status = '' %>
+                    <% order.order_items.each do |order_item| %>
+                        <tr>
+                            <td><%= link_to order_item.item.title, items_path(order_item) %></td>
+                            <td><%= order_item.quantity %></td>
+                            <td>$<%= order_item.quantity * order_item.item.price %></td>
+                            <% total_price += order_item.quantity * order_item.item.price %>
+                            <% o_status = order.status %>
+                            <% if order.status == 'ordered' %>
+                                <%  order_time = order.created_at %>
+                            <%elsif order.status == 'completed'%>
+                                <% order_time = order.completed_at%>
+                            <% elsif order.status == 'canceled' %>
+                                <%  order_time = order.canceled_at%>
+                            <% end %>  
+                        </tr>
+                    <% end %>
+                    <tr>
+                        <td colspan="3">
+                            <div class="order-details">
+                                <b>Total Price:</b> $<%= total_price %><br>
+                                <b>Status:</b> <%= o_status %><br>
+                            </div>
+        ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                        </td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

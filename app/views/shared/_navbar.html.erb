@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <a class="navbar-brand" href="#"><%= image_tag "logo.png" , class:"logo-image"%></a>
+      </nav>
+    <div class= "A">
+      <div class="container">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'About Us', "#", class: 'nav-link' %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
+              Categories
+            </a>
+            <div class="dropdown-menu table table-hover">
+              <% @categories.each do |category| %>
+                <%= image_tag "Food.jpeg", class:"category-image"%> <%= link_to category.name, category_path(category), class: 'dropdown-item' %>
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Contacts', "#", class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '', cart_path, class:'bi bi-cart4 cart' %>
+          </li>
+          <li class="nav-item">
+             <% if user_signed_in? %>
+                <%= link_to "Sign Out", destroy_user_session_path,data: { no_turbolink: true }, method: :delete, class: 'nav-link' %>
+             <% else %>
+                <%= link_to "Sign In",new_user_session_path, class:"nav-link"%>
+             <% end %>
+          </li>
+        <li class="nav-item">
+        <div class="input-group">
+          <div class="form-outline">
+            <%= form_tag(items_path, method: :get, class: "form-inline") do %>
+              <%= text_field_tag :search, params[:search], class: "form-control search-input", placeholder: "Search" %>
+              <button type="submit" class="btn btn-dark fas fa-search search-button"></button>
+            <% end %>
+          </div>
+        </div>
+          </li>
+        </ul>
+    </div>
+  </div>
+    </header>
+  </body>
+</html>
+
+
+
+

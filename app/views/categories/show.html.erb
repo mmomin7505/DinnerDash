@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%= stylesheet_link_tag 'categories', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<div class="Box-container">
+  <div class="row">
+    <% @item.each_with_index do |item, index| %>
+      <div class="col-md-6 mb-3 w-30">
+        <div class="card h-100">
+          <%= image_tag "Food.jpeg", class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= item.title %></h5>
+            <p class="card-text"><%= item.description %></p>
+            <p class="card-text">$<%= item.price %></p>
+            <div style="display:flex; justify-content:space-between; margin: 0em 5em">
+              <%= form_with(url: cart_items_path, method: :post, local: true) do |f| %>
+                <%= f.fields_for :cart_item do |c| %>
+                  <%= c.hidden_field :item_id, value: item.id %>
+                    <%= c.number_field :quantity, value: 1, min: 1 , class:"number-field"%>
+                    <%= c.submit "Add to Cart", class: "button" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% if (index + 1) % 4 == 0 %>
+        <div class="w-100"></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+</body>
+</html>
