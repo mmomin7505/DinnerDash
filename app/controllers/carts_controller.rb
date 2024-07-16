@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+ 
   def show
     if user_signed_in?
       @cart = current_user.cart || current_user.create_cart

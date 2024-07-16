@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
- <%= stylesheet_link_tag 'items', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'items', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
 <div class="Box-container">
-    <div class="row">
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th class="n">Title</th>
-                    <th class="n">Description</th>
-                    <th class="n">Quantity</th>
-                    <th class="n">Price</th>
-                    <th class="b"><%= link_to "Add Item", new_admin_item_path%></th> 
-                </tr>
-            </thead>
-            <% @items.each do |item| %>
-             <tbody>
-                <tr>
-                    <td><%= item.title %></td>
-                    <td><%= item.description %></td>
-                    <td><%= item.quantity %></td>
-                    <td><%= item.price %></td>
-                    <td> 
-                     <%= button_to 'Hide',"",  method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
-                     <%= link_to "Modify", edit_admin_item_path(item), class:"btn btn-dark"%>
-                    </td>
-                </tr>
-             </tbody>
-            <% end %>
-        </table>
-    </div>
-</div>                    
+  <div class="row">
+    <%= render "layouts/flash_message" %>
+    <table class="table1">
+      <thead>
+        <tr>
+          <th class="n">Title</th>
+          <th class="n">Description</th>
+          <th class="n">Quantity</th>
+          <th class="n">Price</th>
+          <th class="bu"><%= link_to new_admin_item_path, class: "btn btn-primary" do %><i class="fas fa-plus"></i><% end %></th>
+        </tr>
+      </thead>
+      <% @items.each do |item| %>
+      <tbody>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.description %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.price %></td>
+          <td>
+            <%= button_to admin_item_path(item), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do %><i class="fas fa-trash-alt"></i><% end %><br>
+            <%= link_to edit_admin_item_path(item), class: "btn btn-dark " do %><i class="fas fa-edit"></i><% end %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
 </body>
 </html>

@@ -10,7 +10,7 @@
   <div class="row">
     <%= render "layouts/flash_message" %>
     <% if @cart_items.any? %>
-        <table class="table">
+        <table class="table1">
             <thead>
             <tr>
                 <th>Item</th>
@@ -23,7 +23,7 @@
             <tbody>
            <% (@cart_items || []).each do |cart_item| %>
               <tr>
-                <td><%= cart_item.item.title if cart_item.item %></td>
+                <td><%= image_tag "Food.jpeg", style:"width:20%;height:auto;border-radius:10px" %>  <%= cart_item.item.title if cart_item.item %></td>
                 <td>
                 <% if user_signed_in? %>
                   <%= form_tag(cart_item_path(cart_item.id), method: :put, remote: true, class: 'update-cart-item-form') do %>
@@ -38,22 +38,27 @@
                 <td>$<%= cart_item.item.price if cart_item.item %></td>
                 <td>$<%= cart_item.item.price * cart_item.quantity if cart_item.item %></td>
                 <td>
-                <% if user_signed_in? %>
-                  <%= button_to 'Remove', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
-                <% else %>
-                  <%= button_to 'Remove', cart_item_path(cart_item.item.id), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
-                <% end %>
+               <% if user_signed_in? %>
+                <%= button_to 'Remove', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true %>
+               <% else %>
+                <%= button_to 'Remove', cart_item_path(cart_item.item.id), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true %>
+               <% end %>
                 </td>
               </tr>
             <% end %>
+             <tr>
+                  <td colspan="3">
+                    <h3>Total: $<%= @cart_items.sum { |item| item.item.price * item.quantity } %></h3>
+                      <%= link_to 'Confirm Order',checkout_cart_items_path, class: 'button' %>
+                    <% else %>
+                      <p>Your cart is empty.</p>
+                    <% end %>
+                  </td>
+            </tr>
     </tbody>
   </table>
 
-    <h3>Total: $<%= @cart_items.sum { |item| item.item.price * item.quantity } %></h3>
-       <%= link_to 'Confirm Order',checkout_cart_items_path, class: 'button' %>
-    <% else %>
-      <p>Your cart is empty.</p>
-    <% end %>
+  
   </div>
 </div>
 

@@ -6,6 +6,7 @@
 <body>
 <div class="Box-container">
   <div class="row">
+    <%= render "layouts/flash_message" %>
     <% @item.each_with_index do |item, index| %>
       <div class="col-md-6 mb-3 w-30">
         <div class="card h-100">

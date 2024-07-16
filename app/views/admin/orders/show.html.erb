@@ -6,9 +6,10 @@
 <body>
 <div class="Box-container">
     <div class="row">
-        <table class="table table-bordered"> 
+        <%= render "layouts/flash_message" %>
+        <table class="table1"> 
             <%= link_to "",admin_orders_path, class:"A bi bi-arrow-left" %>
-            <thead class="thead-dark">
+            <thead>
                 <tr>
                     <th class="n">Item</th>
                     <th class="n">Quantity</th>

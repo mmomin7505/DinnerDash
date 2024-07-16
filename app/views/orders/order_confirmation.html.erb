@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%= stylesheet_link_tag 'orders', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+    <div class="B-container">
+        <div class="row">
+            <div class="c">
+                <div class="buttons">
+                    <%= link_to 'Go to Home', root_path, class: 'btn btn-outline-primary' %>
+                    <%= link_to 'View All Orders', orders_path, class: 'btn btn-outline-primary' %>
+                </div>
+                <p class="a">Your order has been placed successfully.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

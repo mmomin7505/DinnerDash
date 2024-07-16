@@ -6,7 +6,8 @@
 <body>
     <div class="Box-container">
         <div class="row">
-            <table class="table">
+            <%= render "layouts/flash_message" %>
+            <table class="table1">
                 <thead>
                     <tr>
                         <th>Items</th>
@@ -41,7 +42,7 @@
                                 <b>Total Price:</b> $<%= total_price %><br>
                                 <b>Status:</b> <%= o_status %><br>
                             </div>
-        ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                            <hr class="order-divider">
                         </td>
                     </tr>
                 <% end %>

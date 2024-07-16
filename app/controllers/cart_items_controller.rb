@@ -38,7 +38,7 @@ class CartItemsController < ApplicationController
         status: 'ordered',
         created_at: Time.current
       )
-
+  
       current_user.cart.cart_items.each do |cart_item|
         @order.order_items.create(
           item: cart_item.item,
@@ -46,13 +46,14 @@ class CartItemsController < ApplicationController
           amount: cart_item.quantity * cart_item.item.price
         )
       end
-
+  
       current_user.cart.cart_items.destroy_all
-      redirect_to orders_path, notice: 'Your order has been placed successfully.'
+      redirect_to order_confirmation_path, notice: 'Your order has been placed successfully.'
     else
-      redirect_to new_user_session_path, alert: "You need to Sign In First."
+      redirect_to new_user_session_path, alert: "You need to sign in first."
     end
   end
+  
 
   def update
     cart_item = CartItem.find(params[:id])
@@ -100,7 +101,7 @@ class CartItemsController < ApplicationController
   def remove_from_session_cart
     item_id = params[:id].to_i
     session[:cart].reject! { |item| item['item_id'] == item_id.to_s }
-    head :no_content
+    redirect_to cart_path, notice: 'Item removed from cart successfully.'
   end
 
   def calculate_total_price

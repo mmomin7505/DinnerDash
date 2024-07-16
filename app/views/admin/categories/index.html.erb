@@ -5,20 +5,21 @@
 </head>
 <body>
 <div class="Box-container">
-    <table class="table table-bordered c">
-        <thead class="thead-dark">
+    <%= render "layouts/flash_message" %>
+    <table class="table1 c">
+        <thead>
             <tr>
                 <th class="n">Name</th>
-                <th class="b"><%= link_to "Add Categories", new_admin_category_path%></th> 
+                <th class="bu"><%= link_to new_admin_category_path, class: "btn btn-primary" do %><i class="fas fa-plus"></i><% end %></th>
             </tr>
         </thead>
         <% @categories.each do |category| %>
         <tbody>
             <tr>
-                <td><%= category.name %></td>
+                <td><%= image_tag "Food.jpeg", style:"width:20%;height:auto;border-radius:10px" %>  <%= category.name %></td>
                 <td> 
-                <%= link_to "Modify", edit_admin_category_path(category), class:"btn btn-dark"%>
-                <%= button_to 'Remove', admin_category_path(category), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+                <%= button_to admin_category_path(category), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do %><i class="fas fa-trash-alt"></i><% end %><br>
+                <%= link_to edit_admin_category_path(category), class: "btn btn-dark" do %><i class="fas fa-edit"></i><% end %>
                 </td>
             </tr>
         </tbody>

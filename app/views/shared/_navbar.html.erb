@@ -26,7 +26,7 @@
             </a>
             <div class="dropdown-menu table table-hover">
               <% @categories.each do |category| %>
-                <%= image_tag "Food.jpeg", class:"category-image"%> <%= link_to category.name, category_path(category), class: 'dropdown-item' %>
+                <%= image_tag "Food.jpeg", class:"category-image"%> <%= link_to category.name, items_path(category_id: category.id), class: 'dropdown-item' %>
               <% end %>
             </div>
           </li>
@@ -34,7 +34,10 @@
             <%= link_to 'Contacts', "#", class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to '', cart_path, class:'bi bi-cart4 cart' %>
+            <%= link_to cart_path, class: 'nav-link' do %>
+              <i class="bi bi-cart4"></i>
+              (<%= current_cart.cart_items.count %>)
+            <% end %>
           </li>
           <li class="nav-item">
              <% if user_signed_in? %>
@@ -45,7 +48,7 @@
           </li>
         <li class="nav-item">
         <div class="input-group">
-          <div class="form-outline">
+          <div class="form-outline"> 
             <%= form_tag(items_path, method: :get, class: "form-inline") do %>
               <%= text_field_tag :search, params[:search], class: "form-control search-input", placeholder: "Search" %>
               <button type="submit" class="btn btn-dark fas fa-search search-button"></button>

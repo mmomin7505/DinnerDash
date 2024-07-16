@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   resources :categories, only: [:show]
   resources :orders, only: [:index]
+  get 'order_confirmation', to: 'orders#order_confirmation'
   resources :cart_items, only: [:create, :destroy, :update] do
     collection do
       get 'checkout'

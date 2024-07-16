@@ -4,12 +4,12 @@
   <%= stylesheet_link_tag 'items', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-<div class="Box-container">
+<div class="B-container">
   <div class="row">
     <%= render "layouts/flash_message" %>
     <% @item.each_with_index do |item, index| %>
       <div class="col-md-3 mb-4">
-        <div class="card h-70">
+        <div class="card h-100">
             <% if item.image.attached? %>
               <%= image_tag(item.image, class: "card-img-top") %> 
             <% end %>
@@ -17,7 +17,7 @@
               <h5 class="card-title"><%= item.title %></h5>
               <p class="card-text"><%= item.description %></p>
               <p class="card-text">$<%= item.price %></p>
-              <div style="display:flex; justify-content:space-between; margin: 0em 5em">
+              <div class="form-group">
                 <%= form_with(url: cart_items_path, method: :post, local: true) do |f| %>
                   <%= f.fields_for :cart_item do |c| %>
                     <%= c.hidden_field :item_id, value: item.id %>
@@ -29,9 +29,6 @@
             </div>
         </div>
       </div>
-      <% if (index + 1) % 4 == 0 %>
-        <div class="w-100"></div>
-      <% end %>
     <% end %>
   </div>
 </div>
