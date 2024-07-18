@@ -12,6 +12,8 @@
         <div class="card h-100">
             <% if item.image.attached? %>
               <%= image_tag(item.image, class: "card-img-top") %> 
+            <% else %>
+              <%= image_tag("Food.jpeg", class: "card-img-top") %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= item.title %></h5>

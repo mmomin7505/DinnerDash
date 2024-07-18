@@ -7,43 +7,41 @@
 <div class="Box-container">
     <div class="row">
         <%= render "layouts/flash_message" %>
-        <div class="Box">
-            <div class="form-container">
-                <h2><b>Modify Item</b></h2>
-                <%= form_with(model: [:admin, @item], url: admin_item_path(@item), method: :patch, local: true) do |form| %>
-                    <div class="form-group">
-                        <%= form.label :title %>
-                    </div>
-                    <%= form.text_field :title, class:"field" %>
+        <div class="Bx">
+            <h2><b>Modify Item</b></h2>
+            <%= form_with(model: [:admin, @item], url: admin_item_path(@item), method: :patch, local: true) do |form| %>
+                <div class="form-group">
+                    <%= form.label :title %>
+                </div>
+                <%= form.text_field :title, class:"field" %>
 
-                    <div class="form-group">
-                        <%= form.label :description %>
-                    </div>
-                    <%= form.text_area :description, class:"field" %>
+                <div class="form-group">
+                    <%= form.label :description %>
+                </div>
+                <%= form.text_area :description, class:"field" %>
 
-                    <div class="form-group">
-                        <%= form.label :quantity %>
-                    </div>
-                    <%= form.number_field :quantity, step: 1, class:"field" %>
+                <div class="form-group">
+                    <%= form.label :quantity %>
+                </div>
+                <%= form.number_field :quantity, step: 1, class:"field" %>
 
-                    <div class="form-group">
-                        <%= form.label :price %>
-                    </div>
-                    <%= form.number_field :price, step: 1, class:"field" %>
+                <div class="form-group">
+                    <%= form.label :price %>
+                </div>
+                <%= form.number_field :price, step: 1, class:"field" %>
 
-                    <div class="form-group">
-                        <%= form.label :image %>
-                    </div>  
-                     <%= form.file_field :image %>
+                <div class="form-group">
+                    <%= form.label :image %>
+                </div>  
+                    <%= form.file_field :image %>
 
-                    <div class="form-group">
-                        <%= form.label :category %>
-                    </div>  
-                    <%= form.collection_select :category_ids, Category.all, :id, :name, include_blank: true %> <br><br>
+                <div class="form-group">
+                    <%= form.label :category %>
+                </div>  
+                <%= form.collection_select :category_ids, Category.all, :id, :name, include_blank: true %> <br><br>
 
-                        <%= form.submit "Submit", class:"Submit-button" %>
-                <% end %>
-            </div>
+                    <%= form.submit "Submit", class:"Submit-button" %>
+            <% end %>
         </div>
     </div>
 </div>

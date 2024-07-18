@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' %>
     <title>Sign Up</title>
 </head>
 <div class="Box-cont">
   <div class="row">
     <div class="Box">
-      <div class="form-container">
         <%= image_tag "logo.png", class:"Logo-image" %> 
         <h2><B>Sign Up Form </B></h2>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -47,7 +46,6 @@
             <%= f.submit "Sign up", class:"Submit-button"%><br>
             <%= render "devise/shared/links" %>
         <% end %>
-        </div>
         </div>
    </div>
  </div>

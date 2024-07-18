@@ -7,42 +7,40 @@
 <div class="Box-container">
     <div class="row">
         <%= render "layouts/flash_message" %>
-        <div class="Box">
-            <div class="form-container">
-                <h2><b>Modify Category</b></h2>
+        <div class="Bx">
+            <h2><b>Modify Category</b></h2>
 
-                <%= form_with(model: [:admin, @category], url: admin_category_path(@category), method: :put, local: true) do |form| %>
-                    <div class="form-group">
-                        <%= form.label :name %>
-                    </div>
-                    <%= form.text_field :name, class:"field" %>
+            <%= form_with(model: [:admin, @category], url: admin_category_path(@category), method: :put, local: true) do |form| %>
+                <div class="form-group">
+                    <%= form.label :name %>
+                </div>
+                <%= form.text_field :name, class:"field" %>
 
-                    <%= form.submit "Submit", class:"Submit-button" %>
-                <% end %>
-                 <br>
-                -------------------------------------------------------------------------------------------------------------------
-                 <br>    
-                <h2><B>Items in this Category<B></h2><br>
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
+                <%= form.submit "Submit", class:"Submit-button" %>
+            <% end %>
+                <br>
+            -------------------------------------------------------------------------------------------------------------------
+                <br>    
+            <h2><B>Items in this Category<B></h2><br>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="n">Title</th>
+                        <th class="n">Description</th>
+                        <th class="n">Price</th>
+                        <th class="n"></th>
+                    </tr>
+                </thead>
+                <% @category.items.each do |item| %>
+                    <tbody>
                         <tr>
-                            <th class="n">Title</th>
-                            <th class="n">Description</th>
-                            <th class="n">Price</th>
-                            <th class="n"></th>
+                            <td><%= item.title %></td>
+                            <td><%= item.description %></td>
+                            <td><%= item.price %></td>
+                            <td> <%= button_to 'Remove',remove_item_admin_category_path(@category, item_id: item.id), method: :post, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %> </td>
                         </tr>
-                    </thead>
-                    <% @category.items.each do |item| %>
-                        <tbody>
-                            <tr>
-                                <td><%= item.title %></td>
-                                <td><%= item.description %></td>
-                                <td><%= item.price %></td>
-                                <td> <%= button_to 'Remove',remove_item_admin_category_path(@category, item_id: item.id), method: :post, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %> </td>
-                            </tr>
-                    <% end %>
-                </table>
-           </div>
+                <% end %>
+            </table>
         </div>
     </div>
 </div>

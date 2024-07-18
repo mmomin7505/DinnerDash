@@ -69,3 +69,17 @@
     margin-left: 120px;
 }
 
+.B-cont {
+    align-items: center;
+    background-color: rgb(211, 211, 211);
+    height: auto;
+    width: 70%;
+    display: flex;
+    padding:20px;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-top: 1900px;
+    margin-bottom: -150px;
+}
